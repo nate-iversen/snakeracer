@@ -1,0 +1,371 @@
+@font-face {
+  font-family: Roboto;
+  src: url(./assets/Roboto-Regular.ttf);
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url(./assets/Roboto-Bold.ttf);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url(./assets/Roboto-Italic.ttf);
+  font-style: italic;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #7648FF;
+    color: white;
+    font-weight: bold;
+    font-family: Roboto, "Arial", sans-serif;
+  }
+  
+  #sdk_title {
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 80px;
+    background-image: url('./assets/header_background.webp');
+    background-size: cover;    
+  }
+
+  #gc_logo {
+    padding-top: 10px;
+    margin-left: 20px;
+    margin-right: -15px;
+    height: 60px;
+  }
+  
+  .title-text {   
+    font-size: 26px;
+    padding-top: 50px;
+    margin-left: 60px;
+  }
+
+  #start_btn, #host_indicator, #guest_indicator {
+    float: right;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 22px;
+    margin: 0 10px;
+    cursor: pointer;
+    margin-top: -35px;
+    font-weight: bold;
+    color: #FFF;
+  }
+
+  #player_name_container {
+    width: 100%;
+    text-align: right;
+    font-size: 20px;
+    margin-left: -15px;
+    margin-top: -10px;
+  }
+  
+  #start_btn {
+    background: #00B050;
+    width: 150px;
+  }
+  
+  #start_btn.reset {
+    background: #FFC000;
+  }
+  
+  #host_indicator {
+    background: #FA402A;
+  }
+  
+  #guest_indicator {
+    background: #7ed2f5;
+  }
+  
+  #sdk_content {
+    display: flex
+  }
+  
+  #sdk_left {
+    padding: 30px 30px 30px 0px;
+    width: 20%;
+    background-image: url('./assets/bg_left.png');
+    background-size: cover;
+    background-position: right top;
+    height: 85.5vh;
+  }
+  
+  .controls-title, .data-title {
+    text-align: center;
+    font-size: 24px;
+    text-decoration: underline;
+  }
+  
+  .controls-list {
+    padding: 15px 20px;
+  }
+  
+  .controls-list .control {
+    margin-bottom: 5px;
+    text-align: left;
+  }
+  
+  a {
+    color:#156082;
+  }
+  
+  .orientation-link {
+    display: block;
+    margin-left: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .controls-list .control-arrows {
+    margin-bottom: 60px;
+  }
+  
+  .controls-list .control-arrow-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .controls-list .control-arrow-container {
+    display: flex;
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+    justify-content: center;
+    margin-left: -60px;
+  }
+  
+  .control-arrow-container * {
+    position: absolute;
+  }
+  
+  .control-arrow img {
+    width: 80px;
+  }
+  
+  .control-letter {
+    font-size: 20px;
+    color: #333;
+    margin-left: 80px;
+    margin-top: 24px;
+  }
+  
+  .control-letter.active {
+    color: #7648FF;
+  }
+  
+  .control-buttons {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .control-buttons .control-button-col {
+    width: 33%;
+    text-align: center;
+    margin: 10px;
+  }
+  
+  .control-button-col .control-button {
+    padding: 10px 20px;
+    color: #333;
+    background: #FF3BA7;
+    border: solid 3px #FFF;
+    margin-bottom: 5px;
+  }
+  
+  .control-button-col .control-button.active {
+    color: #7648FF;
+  }
+  
+  .led-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .pie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: solid 3px #333;
+    background: conic-gradient(
+            #FFF 0% 100%,
+       );
+    transform: rotate(175deg);
+  }
+  
+  .pie:after {
+    content: '';
+    position: absolute;
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    background-color: #333;
+  }  
+
+  .pie div {
+    z-index: 2;
+    font-weight: bold;
+    font-family: "JetBrains Mono", sans-serif ;
+    transform: rotate(-175deg);
+  }  
+    
+  #vibration {
+    text-align: center;
+    color: #FA402A;
+    transform: rotate(0deg);
+  }
+  
+  #vibration.active {
+    color: #00B050;
+  }
+
+  .feedback-table {
+    width: 100%;
+  }
+   
+  .explainer {
+    margin-top: 10px;
+    text-align: center;
+    font-style: italic;
+    font-size: 16px;
+  }
+  
+  .LEDsContainer{
+    position: relative;
+    min-width: 180px;
+    width: auto;
+    margin-bottom: 20px;
+  }
+  
+  .LED-row {
+    display: ruby-text;
+  }
+  
+  .LED{
+      display: inline-block;
+      height: 35px;
+      width: 25px;
+      position: relative;
+      background-color: #535353;
+      text-align: center;
+      margin: 2px;
+  }
+
+  .LED > a{
+      position: absolute;
+      top:50%;
+      transform: translate(-50%,-50%);
+      color: white;
+  }
+  
+  #sdk_right {
+    padding: 30px 0px 30px 30px;
+    width: 20%;
+    background-image: url('./assets/bg_right.png');
+    background-size: cover;
+    background-position: left top;
+  }
+  
+  #sdk_center {
+    width: 59%;
+    height: 90vh;
+    position: relative;
+  }
+  
+  #GameXframe {
+    background: #000;
+    border: solid 3px #000;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .playerBoard {
+    min-height: 187px;
+    margin-top: 20px;
+    opacity: 0;
+}
+
+.playerMedal {
+    margin-right: 20px;
+}
+
+.nicknameContainer {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    column-gap: 10px;
+}
+
+.roomContainer .victoryQuoteContainer {
+    margin-top: -15px;
+    margin-bottom: 10px;
+}
+
+
+.mvpAwards {
+    padding-top: 50px;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.mvpContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  background-color: #000;
+  height: 100%;
+  width: 100%;
+}
+
+.mvpAwards {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.gameOutcomeButtons {
+    margin: 30px;
+}
+
+.gameWinnerStatus {
+    font-size: 18px;
+}
+
+#playerVictoryQuoteInput {
+    width: 100%;
+    height: 44px;
+}
+
+.playerNickname {
+  margin-bottom: 5px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.playerVictoryQuote {
+    height: 25px;
+}
+
+.bottom-logos {
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.bottom-logos img {
+  height: 60px;
+  margin: 10px;
+}

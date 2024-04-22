@@ -1,0 +1,126 @@
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./sdk/sdk.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js" integrity="sha512-zN6KYOtONNTOGXz0RkWX2EpavN9VdIs+2w+To+fhciFv83YA9maUpi2lzZWrOfKXdFIZZomWufBznkyHi3a8oQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" defer src="./sdk/GameCozySim.js"></script>
+    <script type="text/javascript" defer src="./sdk/sdk.js"></script>  
+  </head>
+  <body>
+    <div id="sdk_title">
+      <img src="./sdk/assets/gc_logo.png" id="gc_logo" alt="GameCozy logo" style="float:left;">
+      <div class="title-text">
+        SDK
+        <button id="start_btn" style="display:none;">PLAY</button>
+        <button id="host_indicator" style="display:none;">Host</button>
+        <button id="guest_indicator" style="display:none;">Guest</button>
+      </div>
+      <div id="player_name_container">Nickname: <span class="player_name"></span></div>
+    </div>
+    <div id="sdk_content">
+      <div id="sdk_left">
+        <div class="controls-title">
+          Controls
+        </div>
+        <div class="explainer">Use the following controls to interact<br>with the GameCozy.</div>
+        <div class="controls-list">
+          <div class="control-arrows">
+            <div class="control-arrow-row">
+              <div class="control control-arrow-container"><div class="control-arrow"><img src="./sdk/assets/arrow_up.png" alt="up"></div><div class="control-letter" id="w">W</div></div>
+            </div>
+            <div class="control-arrow-row">
+              <div class="control control-arrow-container"><div class="control-arrow"><img src="./sdk/assets/arrow_left.png" alt="left"></div><div class="control-letter" id="a">A</div></div>
+              <div class="control control-arrow-container"><div class="control-arrow"><img src="./sdk/assets/arrow_right.png" alt="right"></div><div class="control-letter" id="d">D</div></div>           
+            </div>
+            <div class="control-arrow-row">
+              <div class="control control-arrow-container"><div class="control-arrow"><img src="./sdk/assets/arrow_down.png" alt="down"></div><div class="control-letter" id="s">S</div></div>           
+            </div>
+          </div>
+          <div class="control-buttons">
+            <div class="control-button-col">
+              <div class="control-button" id="button_press">
+                space  
+              </div>
+              <div class="control-name">
+                Button
+              </div>
+            </div>
+            <div class="control-button-col">
+              <div class="control-button" id="tap">
+                shift  
+              </div>
+              <div class="control-name">
+                Tap
+              </div>
+            </div>
+            <div class="control-button-col">
+              <div class="control-button" id="sip">
+                ctrl  
+              </div>
+              <div class="control-name">
+                Sip
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="data-title">
+          Feedback
+        </div>
+        <div class="explainer">Indicates the activity of GameCozy's LEDs and vibrating motor.</div>
+        <div class="controls-list">
+          <div class="led-container">
+            <div class="pie" id="led_pie">
+              <div class="control">Vibration<div class="indicator" id="vibration">OFF</div></div>                
+            </div>
+          </div>
+          <table class="feedback-table">
+            <tr>
+              <td>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>  
+      <div id="sdk_center">
+        <iframe src="./game" title="Game" frame-title="game" id="GameXframe"></iframe>
+          <div class="mvpContainer" id="mvpContainer" style="display:none;">
+              <div class="mvpAwards" id="mvpAwards">
+                  <i>MVP Awards</i>
+              </div>
+              <div class="gameWinnerStatus" id="statusText">
+              </div>
+              <div class="playerBoard" id="playerBoard">
+              </div>
+          </div>
+      </div>     
+      <div id="sdk_right">
+        <div class="data-title">
+          Device Data
+        </div>
+        <div class="explainer">Data collected from the GameCozy accessible through the game.</div>
+        <div class="controls-list">
+          <div class="control">X-Direction: <span class="data-field" id="x_direction_data"></span></div>
+          <div class="control">Y-Direction: <span class="data-field" id="y_direction_data"></span></div>
+          <div class="control">Z-Direction: <span class="data-field" id="z_direction_data"></span></div>
+          <a href="javascript:;" class="orientation-link">Direction Orientation</a>
+          <div class="control">Tilt Angle: <span class="data-field" id="tilt_angle_data"></span></div>
+          <div class="control">Tilt Direction: <span class="data-field" id="tilt_direction_data"></span></div>
+          <a href="javascript:;" class="orientation-link">Tilt Orientation</a>
+          <div class="control">Tap Count: <span class="data-field" id="tap_data">0</span></div>
+          <div class="control">Sip Count: <span class="data-field" id="sip_data">0</span></div>
+          <div class="control">Session Sip Count: <span class="data-field" id="session_sip_data">0</span></div>
+          <div class="control">Time Since Last Sip: <span class="data-field" id="last_drink_time_data">0</span> seconds</div>
+          <div class="control">Cozy MAC: <span class="data-field" id="cozy_mac_data"></span></div>
+          <div class="control">Scanned MACs: <span class="data-field" id="scanned_mac_data"></span></div>          
+        </div>    
+        <div class="data-title">
+          <a href="/sdk/docs" target="_blank">View Reference Guide</a>
+        </div>
+        <div class="bottom-logos">
+          <a href="http://gamecozy.co" target="_blank" title="GameCozy"><img src="./sdk/assets/gc_white.png" alt="GameCozy logo"></a>
+          <a href="https://discord.com/channels/875524952227479614/875526387656712203" target="_blank" title="Discord"><img src="./sdk/assets/discord_logo.png" alt="Discord logo"></a>
+        </div>
+      </div>
+    </div>
+   </body>
+</html>

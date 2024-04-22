@@ -1,0 +1,622 @@
+<html lang="en">
+    <head>
+        <title>GameCozy SDK Reference Guide</title>
+        <style type="text/css">
+            
+            body {
+                font-family: 'Calibri', Arial, sans-serif;
+                padding: 20px;
+                font-size: 18px;
+            }
+            
+            .header {
+                text-align: center;
+            }
+            
+            .docs-container {
+                display: flex;
+                justify-content: space-between;
+            }
+            
+            #left {
+                font-size: 18px;;
+            }
+            
+            #left li {
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>GameCozy SDK Reference Guide</h1>
+        </div>
+        <div class="docs-container" style="display:flex;">
+            <div id="left" style="width:20%;">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <ul>
+                        <li><a href="#about">About GameCozy</a></li>
+                        <li><a href="#about_sdk">About GameCozy SDK</a></li>
+                        <li><a href="#getting_started">Getting Started</a></li>
+                        <li><a href="#basics">GameCozy SDK Basics</a></li>
+                        <ul>
+                            <li><a href="#sdk_layout">SDK Layout</a></li>
+                            <li><a href="#sdk_file_structure">SDK File Structure</a></li>
+                        </ul>
+                    </ul>
+                    <li><a href="#game_development">Game Development</a></li>
+                    <ul>
+                        <li><a href="#game_structure">Game Structure</a></li>
+                        <li><a href="#game_functions">Game Functions</a></li>
+                        <li><a href="#game_progression">Game Progression</a></li>
+                        <ul>
+                            <li><a href="#game_start">Game Start</a></li>
+                            <li><a href="#game_end">Game End</a></li>
+                            <li><a href="#mvp_awards">MVP Awards</a></li>
+                        </ul>
+                        <li><a href="#player_communication">Player Communication</a></li>
+                        <li><a href="#demo">Demo Walkthrough</a></li>
+                        <li><a href="#game_configuration">Game Configuration</a></li>
+                        <li><a href="#game_basics">Game Basics</a></li>
+                        <li><a href="#game_submission">Game Submission</a></li>
+                    </ul>
+                    <li><a href="#updates">Updates</a></li>
+                    <li><a href="#help">Troubleshooting / Help</a></li>
+                </ul>
+            </div>
+            <div id="right" style="width:80%;">
+                <h1 id="#home">Home</h1>
+                <h2 id="about">About GameCozy</h2>
+                <img src="./images/main_image.png" style="height:300px;float:left;padding-right:60px;">
+                <p>The GameCozy device lets players turn their drink into a gaming controller, allowing game developers to incorporate its controls, data, and feedback into the gaming experience.</p>
+                <p>Gamers can use the GameCozy to interact with games in the following ways:</p>
+                <ul>
+                  <li>Motion capture</li>
+                  <li>Angle and direction</li>
+                  <li>Proximity detection</li>
+                  <li>Vibrational feedback</li>
+                  <li>Visual feedback using LEDs</li>
+                </ul>
+                <p>The GameCozy web application is a NodeJS platform app that allows users to play WebGL
+                games using the GameCozy device (connected via Web-Bluetooth).</p>
+                <br><br>
+                <h2 id="about_sdk">About GameCozy SDK</h2>
+                <p>The GameCozy SDK was developed to allow game developers to bring their own games and ideas to the GameCozy platform via a simple and easy-to-use interface. The interface allows the game developer to incorporate GameCozy controls, data, and feedback into their games, allowing for an even more immersive and entertaining gaming experience.</p>
+                <h2 id="getting_started">Getting Started</h2>
+                <ul>
+                  <li>Download the repo at git://github.com/gamecozy/gamecozy_sdk</li>
+                </ul>
+                <ul>
+                  <li>Ensure you have
+                    <a target="_blank" href="https://nodejs.org/en/download">
+                      <span style="color:rgb(17, 85, 204);">node</span></a>
+                    and
+                    <a target="_blank" href="https://nodejs.org/en/learn/getting-started/an-introduction-to-the-npm-package-manager">
+                      <span style="color:rgb(17, 85, 204);">npm</span></a>
+                    installed on your system</li>
+                </ul>
+                <ul>
+                  <li>Run `npm install` to install dependencies</li>
+                </ul>
+                <ul>
+                  <li>Run `node app.js` to begin the development server</li>
+                </ul>
+                <ul>
+                  <li>The development server will run on port 3003</li>
+                </ul>
+                <ul>
+                  <li>Navigate to localhost:3003 in your browser to access the SDK</li>
+                </ul>
+                <h2 id="basics">GameCozy SDK Basics</h2>
+                <h3 id="sdk_layout">SDK Layout</h3>
+                <p>The GameCozy SDK consists of a Header, Left Rail, Gaming Area, and Right Rail.</p>
+                <img src="./images/full_screen.png" style="height: 400px;">
+                <h4>Header</h4>
+                <img src="./images/header.png" style="width:1000px;">
+                <p>At the right end of the
+                  <strong>Header</strong>, you will notice a
+                  <strong>Host Indicator</strong>,
+                  <strong>Play Button</strong>, and
+                  <strong>Nickname Indicator</strong>.</p>
+                <p>The
+                  <strong>Host Indicator
+                  </strong>is used to display which player is considered the “Host” of the game and which players are the “Guests” of the game.</p>
+                  <img src="./images/guest_header.png" style="width:1000px;">          
+                  <p>In the GameCozy SDK, the “Host” will have the ability to Play and Reset the game. Resetting the game will reset the game window for all connected players. (see<strong>
+                    <a href="#player_communication">Player Communication</a></strong>)</p>
+                    <img src="./images/host_reset.png" style="width:400px;">
+                    <p>The “Host” can also be utilized as the controller of the data of record for multiplayer games. (see
+                  <strong><a href="#player_communication">Player Communication</a></strong>)</p>
+                <p>The
+                  <strong>Nickname Indicator</strong>
+                  helps identify different players and can be used for keeping track of scores and data for multiplayer games (see
+                  <strong><a href="#player_communication">Player Communication</a></strong>).&nbsp; In the GameCozy application, players are able to choose their own Nickname, but in the GameCozy SDK the Nickname is a randomly generated ID that gets updated on every page refresh.</p>
+                <h4>Left Rail</h4>
+                <img src="./images/left_rail.png" style="float:left;height:400px;padding:20px;">
+                <p><br>The
+                  <strong>Left Rail
+                  </strong>displays both
+                  <strong>Controls
+                  </strong>and
+                  <strong>Feedback.</strong>
+                </p>
+                <p>
+                  <strong>Controls</strong>
+                  allows the player to map keyboard controls to GameCozy actions.</p>
+                <p>
+                  <strong>W</strong>
+                  - tilt GameCozy forward</p>
+                <p>
+                  <strong>A</strong>
+                  - tilt GameCozy to the left</p>
+                <p>
+                  <strong>S</strong>
+                  - tilt GameCozy backward</p>
+                <p>
+                  <strong>D</strong>
+                  - tilt GameCozy to the right</p>
+                <p>
+                  <strong>space</strong>
+                  - push the GameCozy’s button</p>
+                <p>
+                  <strong>shift</strong>
+                  - tap the GameGozy (note: this is only captured when the GetTap() function is called - see
+                  <strong><a href="#game_functions">Game Functions</a></strong>)</p>
+                <p>
+                  <strong>ctrl</strong>
+                  - sip from the GameCozy (note: this is only captured when the GetMove() function is called - see
+                  <strong><a href="#game_functions">Game Functions</a></strong>)</p>
+                <p>
+                  <strong>Feedback
+                  </strong>shows both LED and vibrating motor activity. See
+                  <strong><a href="#game_functions">Game Functions</a>
+                  </strong>for details on interacting with the GameCozy’s LEDs and vibrator.</p>
+                  <br><br>
+                  <h4>Gaming Area</h4>
+                <img src="./images/playing_game.png" style="height:400px;">
+                <p>The
+                  <strong>Gaming Area
+                  </strong>loads the game found at game/game.html (see
+                  <strong><a href="#sdk_file_structure">SDK File Structure</a></strong>). If multiple players are connected to the server, the same game will load in sync for all connected players (see
+                  <strong><a href="#player_communication">Player Communication</a></strong>). The “Host” may reset the game for all players (and reload the code) by clicking the
+                  <strong>Reset
+                  </strong>button.</p>
+                <h4>Right Rail</h4>
+                <img src="./images/right_rail.png" style="float:right;height:550px;padding-right: 300px;">
+                <p>The
+                  <strong>Right Rail
+                  </strong>displays
+                  <strong>Device Data
+                  </strong>and a link to this
+                  <strong>Reference Guide</strong>.</p>
+                <p>
+                  <strong>Device Data
+                  </strong>displays data received from the GameCozy device and/or simulated from the keyboard controls.</p>
+                <p>
+                  <strong>X-Direction</strong>
+                  - X acceleration value</p>
+                <p>
+                  <strong>Y-Direction</strong>
+                  - Y acceleration value</p>
+                <p>
+                  <strong>Z-Direction</strong>
+                  - Z acceleration value</p>
+                <p>
+                  <strong>Tilt Angle</strong>
+                  - tilt angle in degrees</p>
+                <p>
+                  <strong>Tilt Direction</strong>
+                  - tilt direction in degrees</p>
+                <p>
+                  <strong>Tap Count</strong>
+                  - numbers of taps collected after calling the GetTap() function</p>
+                <p>
+                  <strong>Sip Count</strong>
+                  - number of sips taken</p>
+                <p>
+                  <strong>Session Sip Count</strong>
+                  - number of sips taken since booting of the GameCozy (or page refresh in the SDK)</p>
+                <p>
+                  <strong>Time Since Last Sip</strong>
+                  - milliseconds passed since the last sip</p>
+                <p>
+                  <strong>Cozy MAC</strong>
+                  - MAC address of the GameCozy</p>
+                <p>
+                  <strong>Scanned MACs</strong>
+                  - MACs of nearby GameCozies</p>
+                  <br><br>
+                <h3 id="sdk_file_structure">SDK File Structure</h3>
+                <p>Several directories can be found within the GameCozy SDK repo.</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <strong>game</strong>
+                  – template for SDK game development (see
+                  <strong><a href="#game_development">Game Development</a></strong>)</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <strong>demo –
+                  </strong>a demo game that can be used for reference (swap with the
+                  <strong>game</strong>
+                  directory to see the demo game in action)</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <strong>sdk</strong>
+                  – files to facilitate the SDK
+                  <strong>
+                    <em>(must not be modified)</em>
+                  </strong>
+                </p>
+                <p>Additionally,
+                  <strong>app.js</strong>
+                  is the node app that facilitates the SDK. This is a simplified version of the main GameCozy application that is used to facilitate the starting, ending, and resetting of games as well as communication of game data between players within the SDK.</p>
+                <p>Only the functions needed for the facilitation of these functions are included in
+                  <strong>app.js</strong>, and<strong></strong>it
+                  <strong>
+                    <em>must not be modified,</em>
+                  </strong>
+                  as it is configured to mimic the main GameCozy application.</p>
+                <h1 id="game_development">Game Development</h1>
+                <h2 id="game_structure">Game Structure</h2>
+                <p>A basic game template has been created under the
+                  <strong>game</strong>
+                  directory. GameCozy supports basic WebGL HTML / JavaScript games, including games created through such game development frameworks as Phaser and Unity.</p>
+                <p>The game template has been designed to make the porting of games to the GameCozy platform simple and fun. The template contains the following files and folders:</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <strong>assets
+                  </strong>–<strong></strong>Include both a game logo and game screenshot in this directory when submitting the game. (see
+                  <strong><a href="#game_configuration">Game Configuration</a></strong>)</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <strong>game.html</strong>
+                  – This is the main html page for your game. Make sure to include both GameCozyFunc.js and game.js, as well as any additional files you might add.</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <strong>game.js</strong>
+                  – This is the main JavaScript file for your game.</p>
+                <p>The game needs to be wrapped in an async function that awaits initSCGame() to facilitate the starting of the game between multiple players (see
+                  <strong><a href="#game_functions">Game Functions</a></strong>). Without this, the game will not start for single or multiplayer games.</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <strong>GameConfig.json
+                  </strong>–<strong></strong>Complete this with information about your game. (see
+                  <strong><a href="#game_configuration">Game Configuration</a></strong>)</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <strong>GameCozyFuncs.js –</strong>
+                  This facilitates communication with the server and the GameCozy simulator and
+                  <strong>
+                    <em>must not be modified</em>
+                  </strong>. (See
+                  <strong><a href="#game_functions">Game Functions</a></strong>)</p>
+                <h2 id="game_functions">Game Functions</h2>
+                <p>Several functions have been developed to facilitate communication between the game and the GameCozy, as well as the game and other players. These functions can be found in
+                  <strong>GameCozyFunc.js</strong>.</p>
+                <p>
+                  <strong>
+                    <em>initSCGame()</em>
+                  </strong>
+                </p>
+                <p>Must be called at the top of the game inside an async function (see
+                  <strong><a href="#game_progression">Game Progression</a></strong>):</p>
+                <p>
+                  <em>(async()=&gt;{</em>
+                </p>
+                <p>
+                  <em>&nbsp;&nbsp;await initSCGame();</em>
+                </p>
+                <p>
+                  <em>&nbsp;&nbsp;// game goes here</em>
+                </p>
+                <p>
+                  <em>})();</em>
+                </p>
+                <p>This is used to facilitate the starting of the game between multiple players and a game will not start without it.</p>
+                <p>
+                  <strong>
+                    <em>finishGCGame(winner=false)</em>
+                  </strong>
+                </p>
+                <p>Finish the game and let other players know that the game is finished. Finishing the game will show the MVP Awards screen (see
+                  <strong><a href="#player_communication">Player Communication</a></strong>)</p>
+                <p>
+                  Parameters:</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	winner: [Boolean] (whether the player calling the function is the winner)</p>
+                <p>
+                  <strong>
+                    <em>SetVib(state=true)</em>
+                  </strong>
+                </p>
+                <p>Turn the GameCozy vibrator on or off.</p>
+                <p>
+                  Parameters:</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	state: [Boolean]&nbsp;</p>
+                <p>options: [true | false]</p>
+                <p>
+                  <strong>
+                    <em>vibMotPulse(times=0)</em>
+                  </strong>
+                </p>
+                <p>Pulse the GameCozy vibrator
+                  <em>times
+                  </em>times.</p>
+                <p>
+                  Parameters:</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		times: [integer]</p>
+                <p>
+                  <strong>
+                    <em>SetLED(position, color, intensity)</em>
+                  </strong>
+                </p>
+                <p>Set a specific LED to a color and intensity.</p>
+                <p>
+                  Parameters:</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	position: [integer]&nbsp;</p>
+                <p>range: [1 to 24]</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		color: [hex color code]</p>
+                <p>
+                  ex: 0xff0000</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	intensity: [integer]&nbsp;</p>
+                <p>range: [1 to 9]</p>
+                <p>
+                  <strong>
+                    <em>setLEDs(color, intensity)</em>
+                  </strong>
+                </p>
+                <p>Set all LEDs to a color and intensity.</p>
+                <p>
+                  Parameters:</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	color: [hex color code]</p>
+                <p>
+                  ex: 0xff0000</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	intensity: [integer]&nbsp;</p>
+                <p>range: [1 to 9]</p>
+                <p>
+                  <strong>
+                    <em>setLEDinterval(clr1, clr2, milliseconds, times)</em>
+                  </strong>
+                </p>
+                <p>Switch all LEDs between two colors.</p>
+                <p>
+                  Parameters:</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	clr1: [hex color code]</p>
+                <p>
+                  ex: 0xff0000</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		clr2: [hex color code]</p>
+                <p>
+                  ex: 0xff0000</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	milliseconds: [integer]</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	times: [integer]</p>
+                <p>
+                  <strong>
+                    <em>sendPlayerData(data)</em>
+                  </strong>
+                </p>
+                <p>Send player data to other players. (see
+                  <strong><a href="#player_communication">Player Communication</a></strong>)</p>
+                <p>
+                  Parameters:</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	data: [JSON object]</p>
+                <p>
+                  <strong>
+                    <em>GetTap(duration)</em>
+                  </strong>
+                </p>
+                <p>Returns the number of GameCozy taps in a given duration. Taps are stored in the
+                  <em>taps</em>
+                  variable. Note - taps are only captured when the GetTap() function is called.</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Parameters:</p>
+                <p>duration: [integer] (milliseconds)</p>
+                <p>
+                  <strong>
+                    <em>GetMove()</em>
+                  </strong>
+                </p>
+                <p>Returns coordinates from the GameCozy. Coordinates will not be gathered until this is called. Also begins capturing sips, buttonPress, tilt direction, and tilt angle.</p>
+                <p>Coordinates are stored in the
+                  <em>coords</em>
+                  variable (array).</p>
+                <p>Sips are stored in the
+                  <em>sips</em>
+                  variable (integer).</p>
+                <p>Button press is stored in the
+                  <em>btnPress
+                  </em>variable (Boolean).</p>
+                <p>Tilt direction is stored in the
+                  <em>tiltDirection</em>
+                  variable (float).</p>
+                <p>Tilt angle is stored in the
+                  <em>tiltAngle
+                  </em>variable (float).</p>
+                <p>
+                  <strong>
+                    <em>StopMove()</em>
+                  </strong>
+                </p>
+                <p>Stops getting coordinates from the GameCozy and resets coordinates to [0,0,0]. Also stops capturing sips, tilt direction, and tilt angle and resets values to 0.</p>
+                <p>
+                  <strong>
+                    <em>GetTimeSinceLastDrink()</em>
+                  </strong>
+                </p>
+                <p>Returns seconds since the last sip was taken. Stored in the
+                  <em>timeSinceLastDrink
+                  </em>variable (integer).</p>
+                <p>
+                  <strong>
+                    <em>GetSessionSips()</em>
+                  </strong>
+                </p>
+                <p>Returns the total number of sips since the GameCozy was powered on (or the SDK page was refreshed). Stored in the
+                  <em>sessionSips</em>
+                  variable (integer).</p>
+                <p>
+                  <strong>
+                    <em>GetMAC(threshold_RSSI, duration)</em>
+                  </strong>
+                </p>
+                <p>Returns the MAC addresses of other GameCozies within a
+                  <em>threshold_RSSI
+                  </em>proximity after a given duration.</p>
+                <p>
+                  Parameters:</p>
+                <p>
+                  threshold_RSSI: [negative integer]</p>
+                <p>
+                  duration: [integer] (seconds)</p>
+                <h2 id="game_progression">Game Progression</h2>
+                <h3 id="game_start">Game Start</h3>
+                <p>A game is started by pressing the
+                  <strong>Play
+                  </strong>button in the SDK header (see
+                  <strong><a href="#sdk_layout">SDK Layout</a>)</strong>. The game must incorporate the await initGCGame() function (see
+                  <strong><a href="#game_functions">Game Functions</a>)</strong>
+                  inside a main async function in order to begin playing.</p>
+                <h3 id="game_end">Game End</h3>
+                <p>A game is ended by calling the
+                  <em>finishGCGame</em>() function (see
+                  <strong><a href="#game_functions">Game Functions</a></strong>). At this point, the game will end for all players and the MVP Awards screen will be displayed.</p>
+                <h3 id="mvp_awards">MVP Awards</h3>
+                <p>After each game, the MVP awards are displayed. This indicates whether the current player is the winner or the loser, and displays game data for each player, determined by the
+                  <em>RankBy
+                  </em>and
+                  <em>RankOrder</em>
+                  data stored in
+                  <strong>GameConfig.json</strong>
+                  and the
+                  <em>window.gameData
+                  </em>variable (see
+                  <strong><a href="#game_configuration">Game Configuration</a>
+                  </strong>and
+                  <strong><a href="#player_communication">Player Communication</a></strong>).</p>
+                <h2 id="player_communication">Player Communication</h2>
+                <p>The GameCozy SDK was designed to allow for quick communication between multiple players in a game. Every browser window connected to the application will be considered a different “player” in the game. The first player to join is considered the “Host” and the remaining players are considered “Guests”. The “Host” is able to Start and Reset the game for all players (see
+                  <strong><a href="#sdk_layout">SDK Layout</a></strong>). If the “Host” is disconnected from the application, the next oldest player will become the “Host”.&nbsp;</p>
+                <p>Player Communication is facilitated through the SendPlayerData() function that allows the game developer to send a JSON object that will be broadcast to all the players in the game. This could include such information as score or coordinates of objects in the game.</p>
+                <p>When game data is received by a player, it will be stored as a hash object in the
+                  <em>window.gameData</em>
+                  variable. Data from the current player will be stored under a “me” key in the hash, while data from other players will be stored under a key that corresponds to the user’s nickname (see
+                  <strong><a href="#sdk_layout">SDK Layout</a></strong>). Additionally, the player’s nickname will be sent as an additional key in the data hash that can be displayed in the game and also used for the MVP Awards screen at the end of a game (see
+                  <strong><a href="#mvp_awards">MVP Awards</a></strong>).</p>
+                <p>For example, the
+                  <em>window.gameData</em>
+                  variable in the demo game for the “Host” might look something like this at a moment in time -&nbsp;</p>
+                  <img src="./images/host_data.png">
+                  <p>While data for the “Guest” in the same demo game might look something like this -&nbsp;</p>
+                  <img src="./images/guest_data.png">
+                  <p>It is up to the game developer to decide what information to send and how to process that information. (see
+                  <strong><a href="#demo">Demo Walkthrough</a></strong>
+                  for more information)</p>
+                <p>Either player may call the
+                  <em>finishGCGame</em>() function to end the game and show both players the
+                  <strong>MVP Awards</strong>
+                  screen (see
+                  <strong><a href="#game_progression">Game Progression</a></strong>).</p>
+                <h2 id="demo">Demo Walkthrough</h2>
+                <p>The demo game included in the SDK is a basic two-player Pong game adapted from
+                  <a target="_blank" href="https://gist.github.com/straker/81b59eecf70da93af396f963596dfdc5">
+                    <span style="color:rgb(17, 85, 204);">https://gist.github.com/straker/81b59eecf70da93af396f963596dfdc5</span>
+                  </a>. It was created to demonstrate the GameCozy game flow and various GameCozy functions that can be included in a game.</p>
+                <p>The game is initiated by calling await
+                  <em>initGCGame()
+                  </em>inside an async function.</p>
+                <p>The “Host” controls the bottom paddle with the GameCozy and the “Guest” controls the top paddle in the same manner. Once the
+                  <em>GetMove()</em>
+                  function is called, the
+                  <em>coords</em>
+                  variable is accessed to accomplish this.</p>
+                <p>If the “Host” presses the GameCozy button, a new yellow distraction ball will be added to the gaming area. Once the
+                  <em>GetMove()
+                  </em>function is called, the
+                  <em>btnPress</em>
+                  variable is accessed to accomplish this.</p>
+                <p>If the “Host” taps the GameCozy, the ball speed of the main ball will increase. The
+                  <em>GetTap()</em>
+                  function is called and the
+                  <em>taps</em>
+                  variable is accessed to accomplish this.</p>
+                <p>If the “Host” takes a sip from the GameCozy, the distraction balls and main ball speed will be reset. Once the
+                  <em>GetMove()
+                  </em>function is called, the
+                  <em>sips</em>
+                  variable is used to accomplish this.</p>
+                <p>The “Host” utilizes the SendPlayerData() function to update the “Guest” on the location of the main ball, bottom paddle, extra balls, and score. The “Guest” utilizes the SendPlayerData() function to update the “Host” on the location of the top paddle and player’s score.</p>
+                <p>The window.checkGameData() function created within the game checks the
+                  <em>window.gameData
+                  </em>variable, looks for the key of the other player, and updates the game view and data accordingly.</p>
+                <p>The demo game is finished when either player calls the
+                  <em>finishGCGame()</em>
+                  function and indicates whether that player is the winner or loser. The game then progresses to the
+                  <strong><a href="#mvp_awards">MVP Awards</a>
+                  </strong>screen. (see
+                  <strong><a href="#game_progression">Game Progression</a></strong>)</p>
+                <h2 id="game_configuration">Game Configuration</h2>
+                <p>The GameConfig.json file has been created to collect and store information about the game and game developer. This information will be used for displaying game information and filtering games within the GameCozy application. Upon submission, populate the JSON object with the following fields:</p>
+                <p>Creator: [string]</p>
+                <p>
+                  limit: 40</p>
+                <p>GameTitle: [string]</p>
+                <p>limit: 40</p>
+                <p>GameGenre: [string]</p>
+                <p>options: [“Action” | “Adventure” | “Sports” | “Racing” | “Shooting” | “Puzzle” | “Cards” | “Ambient” | “Multiplayer” | “Arcade” | “Other”]</p>
+                <p>GameSize: [integer]</p>
+                <p>range: [1 to 36]</p>
+                <p>PlayerType: [string]</p>
+                <p>options: [“single” | “multiplayer”]</p>
+                <p>GameLogo: [string] (path to logo in assets directory)</p>
+                <p>GameScreenShot: [string] (path to screenshot in assets directory)</p>
+                <p>GameDescription: [string]</p>
+                <p>
+                  limit: 200</p>
+                <p>Game Instructions: [text]</p>
+                <p>
+                  limit: 1400</p>
+                <p>RankBy: [string] (key from sendPlayerData()) (see
+                  <strong><a href="#player_communication">Player Communication</a>)</strong>
+                </p>
+                <p>RankOrder: [string]</p>
+                <p>options: [“asc” | “desc”] (see
+                  <strong><a href="#player_communication">Player Communication</a>)</strong>
+                </p>
+                <h2 id="game_basics">Game Basics</h2>
+                <p>After reading through the documentation, reference the following as a summary for what to include in a game. Make sure that, minimally, the following elements are in place for basic game functionality.</p>
+                <ul>
+                  <li>Ensure the game is wrapped in an async function awaiting initSCGame(). (see
+                    <strong><a href="#game_functions">Game Functions</a></strong>)</li>
+                </ul>
+                <ul>
+                  <li>Ensure GetMove() is called to begin getting coordinate data / movement from the GameCozy. (see
+                    <strong><a href="#game_functions">Game Functions</a></strong>)</li>
+                  <li>Utilize the sendPlayerData() function to communicate between players and keep track of scores. (see
+                    <strong><a href="#player_communication">Player Communication</a></strong>)</li>
+                </ul>
+                <ul>
+                  <li>Ensure GameConfig.json `RankBy` is populated with a data key that is being sent in sendPlayerData() and stored in
+                    <em>window.gameData
+                    </em>for proper end of game scoring and ranking. (see
+                    <strong><a href="#game_configuration">Game Configuration</a></strong>)</li>
+                </ul>
+                <ul>
+                  <li>Ensure finishGCGame() is called when the game is finished and indicate whether the player calling the function is winner or loser. (see
+                    <strong><a href="#game_functions">Game Functions</a></strong>)</li>
+                </ul>
+                <h2 id="game_submission">Game Submission</h2>
+                <p>To submit your game to be included in the official GameCozy application, zip the full
+                  <strong>game</strong>
+                  directory and email it to
+                  <a target="_blank" href="mailto:games@smartcozy.co">
+                    <span style="color:rgb(17, 85, 204);">games@gamecozy.co</span>
+                  </a>. In addition to a fully functioning game, ensure that the directory contains the following information:</p>
+                <ul>
+                  <li>A game logo saved in the assets directory</li>
+                  <li>A game screenshot saved in the assets directory</li>
+                  <li>A fully completed GameConfig.json file, including paths to the game logo and screenshot</li>
+                </ul>
+                <h1 id="updates">Updates</h1>
+                <p>We value your submissions and collaboration! This repo will be actively maintained and monitored as GameCozy development continues. Subscribe to the repo to be notified of updates.</p>
+                <h1 id="help">Troubleshooting / Help</h1>
+                <p>Please contact
+                  <a target="_blank" href="mailto:games@gamecozy.co">
+                    <span style="color:rgb(17, 85, 204);">games@gamecozy.co</span>
+                  </a>
+                  if you have any questions or run into any issues.
+                  <br><br><br><br><br>
+                </p>                        
+            </div>
+        </div>
+    </body>
+</html>
