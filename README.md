@@ -2,7 +2,7 @@
 A node app SDK for creating games for the GameCozy web application
 
 # Getting Started
-Download the repo at git@github.com:GameCozyCo/gamecozy_sdk.git
+Download the repo at https://github.com/GameCozyCo/gamecozy_sdk
  
 Ensure you have node and npm installed on your system
  
