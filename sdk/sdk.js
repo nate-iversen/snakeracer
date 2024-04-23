@@ -5,6 +5,11 @@ let hostIndicator = document.getElementById("host_indicator");
 let guestIndicator = document.getElementById("guest_indicator");
 let playerNameElements = document.getElementsByClassName("player_name");
 let gameOutcomeContainer = document.getElementById("gameOutcomeContainer");
+let tiltLink = document.getElementById("tilt_link");
+let orientationModal = document.getElementById("orientation_modal");
+let directionLink = document.getElementById("direction_link");
+let directionModal = document.getElementById("direction_modal");
+
 let scoresLoaded = false;
 window.isHost = false;
 let gameStarted = false;
@@ -24,6 +29,26 @@ startBtn.addEventListener("click", () => {
         startBtn.classList.remove("reset");
     }
 });
+
+tiltLink.addEventListener("click", () => {
+    if (orientationModal.style.display == "none") {
+        orientationModal.style.display = "block";
+    }
+    else {
+        orientationModal.style.display = "none";
+    }
+});
+
+directionLink.addEventListener("click", () => {
+    if (directionModal.style.display == "none") {
+        directionModal.style.display = "block";
+    }
+    else {
+        directionModal.style.display = "none";
+    }
+});
+
+
 
 window.scid = Math.random().toString(36).split('.')[1];
 for (var i = 0; i < playerNameElements.length; i++) {
@@ -161,6 +186,8 @@ function initGameEndData(){
     document.getElementById("mvpContainer").replaceChild(tempDiv, document.getElementById("playerBoard"));
     
 }
+
+
 
 /*******************************************************************/
 let postBroadcast;

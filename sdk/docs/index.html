@@ -286,7 +286,8 @@
                 <h2 id="game_functions">Game Functions</h2>
                 <p>Several functions have been developed to facilitate communication between the game and the GameCozy, as well as the game and other players. These functions can be found in
                   <strong>GameCozyFunc.js</strong>.</p>
-                <p>
+                  <br>
+                  <p>
                   <strong>
                     <em>initSCGame()</em>
                   </strong>
@@ -306,6 +307,7 @@
                   <em>})();</em>
                 </p>
                 <p>This is used to facilitate the starting of the game between multiple players and a game will not start without it.</p>
+                <br>
                 <p>
                   <strong>
                     <em>finishGCGame(winner=false)</em>
@@ -316,6 +318,7 @@
                 <p>
                   Parameters:</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	winner: [Boolean] (whether the player calling the function is the winner)</p>
+                <br>
                 <p>
                   <strong>
                     <em>SetVib(state=true)</em>
@@ -326,6 +329,7 @@
                   Parameters:</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	state: [Boolean]&nbsp;</p>
                 <p>options: [true | false]</p>
+                <br>
                 <p>
                   <strong>
                     <em>vibMotPulse(times=0)</em>
@@ -337,6 +341,7 @@
                 <p>
                   Parameters:</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		times: [integer]</p>
+                <br>
                 <p>
                   <strong>
                     <em>SetLED(position, color, intensity)</em>
@@ -352,6 +357,7 @@
                   ex: 0xff0000</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	intensity: [integer]&nbsp;</p>
                 <p>range: [1 to 9]</p>
+                <br>
                 <p>
                   <strong>
                     <em>setLEDs(color, intensity)</em>
@@ -365,6 +371,7 @@
                   ex: 0xff0000</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	intensity: [integer]&nbsp;</p>
                 <p>range: [1 to 9]</p>
+                <br>
                 <p>
                   <strong>
                     <em>setLEDinterval(clr1, clr2, milliseconds, times)</em>
@@ -381,6 +388,7 @@
                   ex: 0xff0000</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	milliseconds: [integer]</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	times: [integer]</p>
+                <br>
                 <p>
                   <strong>
                     <em>sendPlayerData(data)</em>
@@ -391,6 +399,7 @@
                 <p>
                   Parameters:</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	data: [JSON object]</p>
+                <br>
                 <p>
                   <strong>
                     <em>GetTap(duration)</em>
@@ -401,6 +410,7 @@
                   variable. Note - taps are only captured when the GetTap() function is called.</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Parameters:</p>
                 <p>duration: [integer] (milliseconds)</p>
+                <br>
                 <p>
                   <strong>
                     <em>GetMove()</em>
@@ -422,12 +432,14 @@
                 <p>Tilt angle is stored in the
                   <em>tiltAngle
                   </em>variable (float).</p>
-                <p>
+                  <br>
+                  <p>
                   <strong>
                     <em>StopMove()</em>
                   </strong>
                 </p>
                 <p>Stops getting coordinates from the GameCozy and resets coordinates to [0,0,0]. Also stops capturing sips, tilt direction, and tilt angle and resets values to 0.</p>
+                <br>
                 <p>
                   <strong>
                     <em>GetTimeSinceLastDrink()</em>
@@ -436,7 +448,8 @@
                 <p>Returns seconds since the last sip was taken. Stored in the
                   <em>timeSinceLastDrink
                   </em>variable (integer).</p>
-                <p>
+                  <br>
+                  <p>
                   <strong>
                     <em>GetSessionSips()</em>
                   </strong>
@@ -444,7 +457,8 @@
                 <p>Returns the total number of sips since the GameCozy was powered on (or the SDK page was refreshed). Stored in the
                   <em>sessionSips</em>
                   variable (integer).</p>
-                <p>
+                  <br>
+                  <p>
                   <strong>
                     <em>GetMAC(threshold_RSSI, duration)</em>
                   </strong>
@@ -458,7 +472,8 @@
                   threshold_RSSI: [negative integer]</p>
                 <p>
                   duration: [integer] (seconds)</p>
-                <h2 id="game_progression">Game Progression</h2>
+                  <br>
+                  <h2 id="game_progression">Game Progression</h2>
                 <h3 id="game_start">Game Start</h3>
                 <p>A game is started by pressing the
                   <strong>Play
@@ -511,7 +526,8 @@
                   <a target="_blank" href="https://gist.github.com/straker/81b59eecf70da93af396f963596dfdc5">
                     <span style="color:rgb(17, 85, 204);">https://gist.github.com/straker/81b59eecf70da93af396f963596dfdc5</span>
                   </a>. It was created to demonstrate the GameCozy game flow and various GameCozy functions that can be included in a game.</p>
-                <p>The game is initiated by calling await
+                  <p>To see the demo game in action, swap the <strong>demo</strong> directory with the <strong>game</strong> directory. (see <strong><a href="#sdk_file_structure">SDK File Structure</a></strong>)</p>
+                  <p>The game is initiated by calling await
                   <em>initGCGame()
                   </em>inside an async function.</p>
                 <p>The “Host” controls the bottom paddle with the GameCozy and the “Guest” controls the top paddle in the same manner. Once the
@@ -599,8 +615,7 @@
                   <strong>game</strong>
                   directory and email it to
                   <a target="_blank" href="mailto:games@smartcozy.co">
-                    <span style="color:rgb(17, 85, 204);">games@gamecozy.co</span>
-                  </a>. In addition to a fully functioning game, ensure that the directory contains the following information:</p>
+                    <span style="color:rgb(17, 85, 204);">games@gamecozy.co</span></a>. In addition to a fully functioning game, ensure that the directory contains the following information:</p>
                 <ul>
                   <li>A game logo saved in the assets directory</li>
                   <li>A game screenshot saved in the assets directory</li>
@@ -611,8 +626,7 @@
                 <h1 id="help">Troubleshooting / Help</h1>
                 <p>Please contact
                   <a target="_blank" href="mailto:games@gamecozy.co">
-                    <span style="color:rgb(17, 85, 204);">games@gamecozy.co</span>
-                  </a>
+                    <span style="color:rgb(17, 85, 204);">games@gamecozy.co</span></a>
                   if you have any questions or run into any issues.
                   <br><br><br><br><br>
                 </p>                        

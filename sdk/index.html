@@ -102,10 +102,21 @@
           <div class="control">X-Direction: <span class="data-field" id="x_direction_data"></span></div>
           <div class="control">Y-Direction: <span class="data-field" id="y_direction_data"></span></div>
           <div class="control">Z-Direction: <span class="data-field" id="z_direction_data"></span></div>
-          <a href="javascript:;" class="orientation-link">Direction Orientation</a>
+          <div class="orientation-container">
+            <div class="orientation-modal" id="direction_modal" style="display:none;">
+              <img src="./sdk/assets/orientation.gif" alt="Orientation">
+            </div>
+            <a href="javascript:;" id="direction_link" class="orientation-link">Direction Orientation</a>
+          </div>
           <div class="control">Tilt Angle: <span class="data-field" id="tilt_angle_data"></span></div>
           <div class="control">Tilt Direction: <span class="data-field" id="tilt_direction_data"></span></div>
-          <a href="javascript:;" class="orientation-link">Tilt Orientation</a>
+          <div class="orientation-container">
+            <div class="orientation-modal" id="orientation_modal" style="display:none;">
+              <img src="./sdk/assets/Tilt_Angle.webp" alt="Tilt Angle">
+              <img src="./sdk/assets/Tilt_Direction.webp" alt="Tilt Direction">
+            </div>
+            <a href="javascript:;" id="tilt_link" class="orientation-link">Tilt Orientation</a>
+          </div>
           <div class="control">Tap Count: <span class="data-field" id="tap_data">0</span></div>
           <div class="control">Sip Count: <span class="data-field" id="sip_data">0</span></div>
           <div class="control">Session Sip Count: <span class="data-field" id="session_sip_data">0</span></div>
